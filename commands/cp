@@ -1,0 +1,55 @@
+#!/bin/bash
+CP_DIR="/home/neo/Desktop/cp"
+echo "inside neo-cp"
+
+show_help(){
+    echo "
+commands supported
+    - new | -n
+    - run | -r
+    - help | -h
+    "
+    exit 1
+}
+
+
+create_new(){
+
+    if [ -z "${1}" ]
+    then
+        #not set
+        fn="newFile"
+    else
+        #set
+        fn=$1
+    fi
+    
+    echo ${CP_DIR}
+    ( cd ${CP_DIR} && touch "${fn}.cpp" && cat template.cpp >> "${fn}.cpp")
+    
+}
+
+run(){
+    cd ${CP_DIR}
+    g++ "${1}" && ./a.out < ./input.txt
+
+}
+
+# selects commands
+case $1 in
+    
+    new|-n)
+        create_new $2
+    ;;
+    run|-r)
+        run $2
+    ;;    
+    help|-h)
+        show_help
+    ;;
+    #nothing matched
+    *)
+        show_help
+    ;;
+    
+esac

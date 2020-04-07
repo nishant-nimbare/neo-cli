@@ -1,0 +1,46 @@
+#!/bin/bash
+WORKDIR=$(cd $(dirname $0) && pwd)
+
+show_help(){
+    echo "
+commands supported
+    - startup | s
+    - cp 
+    - git | g
+    - restart ( make all scripts in commands/ executable)
+    - help | h
+    "
+    exit 1
+}
+
+
+# OUTPUT="$("$WORKDIR/commands/startup")"
+# selects commands
+case $1 in
+    
+    startup|s)
+        "$WORKDIR/commands/startup"| tee -ia "$WORKDIR/logs"
+    ;;
+    
+    cp)
+        echo "trying the cp script"
+        $WORKDIR/commands/cp "${@:2}"| tee -ia "$WORKDIR/logs"
+    ;;
+
+    git|g)
+        $WORKDIR/commands/git "${@:2}"| tee -ia "$WORKDIR/logs" 
+    ;;
+
+    restart)
+        chmod -R +x "$WORKDIR/commands"
+    ;;
+
+    #nothing matched
+    *)
+        show_help
+    ;;
+    
+esac
+
+#echo "output was $?"
+

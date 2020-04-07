@@ -1,0 +1,33 @@
+#!/bin/bash
+
+push_regular(){
+
+    git add . && git commit -m "${1}" && git push origin master
+
+}
+
+show_help(){
+    echo "
+commands supported
+    - regular | -r (adds commits and pushes directly to origin master)
+    - status | -s 
+    - help | -h
+    "
+    exit 1
+}
+
+
+case $1 in
+
+    regular|-r)
+        push_regular $2
+    ;;
+
+    status|-s)
+        git status
+    ;;
+
+    *)
+        show_help
+    ;;
+esac
