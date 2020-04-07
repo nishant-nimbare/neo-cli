@@ -10,3 +10,10 @@ Untracked files:
 	neo
 
 nothing added to commit but untracked files present (use "git add" to track)
+[master (root-commit) c27e755] initial
+ 5 files changed, 151 insertions(+)
+ create mode 100755 commands/cp
+ create mode 100755 commands/git
+ create mode 100755 commands/startup
+ create mode 100644 logs
+ create mode 100755 neo

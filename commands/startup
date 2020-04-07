@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "inside startup"
+echo "inside startup killing bluetooth"
 rfkill block bluetooth
 exit 0
