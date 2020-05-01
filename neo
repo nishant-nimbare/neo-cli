@@ -8,6 +8,7 @@ commands supported
     - cp 
     - git | g
     - restart ( make all scripts in commands/ executable)
+    - netspeed | ns : start speedometer
     - help | h
     "
     exit 1
@@ -24,11 +25,15 @@ case $1 in
     
     cp)
         echo "trying the cp script"
-        $WORKDIR/commands/cp "${@:2}"| tee -ia "$WORKDIR/logs"
+        $WORKDIR/commands/cp "${@:2}"
     ;;
 
     git|g)
         $WORKDIR/commands/git "${@:2}"| tee -ia "$WORKDIR/logs" 
+    ;;
+
+    netspeed|ns)
+        speedometer -r wlp3s0
     ;;
 
     restart)

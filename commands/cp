@@ -1,12 +1,12 @@
 #!/bin/bash
 CP_DIR="/home/neo/Desktop/cp"
-echo "inside neo-cp"
 
 show_help(){
     echo "
 commands supported
-    - new | -n
-    - run | -r
+    - new | -n : creates new and copies templates
+    - run-input | -ri : g++ & ./a.out < input.txt  
+    - run | -r : g++ & ./a.out
     - help | -h
     "
     exit 1
@@ -29,10 +29,21 @@ create_new(){
     
 }
 
-run(){
+run_input(){
     cd ${CP_DIR}
-    g++ "${1}" && ./a.out < ./input.txt
+    g++ "${1}" && echo "running .." && ./a.out < ./input.txt
 
+}
+# if [ $? -eq 0 ]
+# then
+#   echo "Successfully created file"
+#   exit 0
+# else
+#   echo "Could not create file" >&2
+#   exit 1
+# fi
+run(){
+    g++ "${1}" && echo "running .." && ./a.out
 }
 
 # selects commands
@@ -40,6 +51,9 @@ case $1 in
     
     new|-n)
         create_new $2
+    ;;
+    run-input|-ri)
+        run_input $2
     ;;
     run|-r)
         run $2
