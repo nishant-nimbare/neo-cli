@@ -27,3 +27,7 @@ at the end your of `~/.profile` file
 ```
 neo help
 ```
+
+### todo
+- debug cpp using gdb
+- change cp new 's directory
